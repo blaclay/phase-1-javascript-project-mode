@@ -16,3 +16,11 @@
 	margin-right: 10px;
 	cursor: pointer;
 }
+
+.article-thumbnail {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin-right: 10px;
+	cursor: pointer;
+}
