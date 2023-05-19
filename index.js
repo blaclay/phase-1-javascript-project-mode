@@ -8,9 +8,35 @@ function displayMain() {
     mainbody.append(p)
 }
 
-function newsFull() {
-    buttonBrief = document.createElement('button')
-    buttonBrief.id = 'showBrief'
+function newFunc(isFull) {
+    ///
+    expandButton = createElement('button')
+    if(isFull) {
+        expandButton.addEventListener('click', element => {
+            // loads brief articles
+        })
+    } else {
+        expandButton.addEventListener('click', element)
+    }
+    
+
+    data.result.forEach(item => {
+        articleDiv = createElement('div');
+        articleDiv.id = '$article' +  item.index;
+        if(isFull) {
+            newsFull(item.index, articleDiv);
+        } else {
+            newsBrief(item.index, articleDiv)
+        }
+    })
+}
+
+function newsFull(index, parent) {
+    buttonBrief = parent.createElement('button')
+    buttonBrief.id = '$showBrief' + index
+    buttonBrief.addEventListener('click', element => {
+
+    })
 }
 
 // function newsBrief() {
