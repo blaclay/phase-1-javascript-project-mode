@@ -3,3 +3,16 @@
 	padding: 20px;
     border-bottom: 1px solid #e5e5e5;
 }
+
+.article {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.article-image {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin-right: 10px;
+	cursor: pointer;
+}
