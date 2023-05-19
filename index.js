@@ -36,6 +36,7 @@ function displayArticles(articles) {
         articleDiv.className = 'article';
 
         articleImageThumbnail(article, articleDiv);
+        articleList.appendChild(articleDiv);
 
         articleDiv.addEventListener('mouseover', () => {
             // articleImage.src = article.multimedia[2].url;
@@ -43,7 +44,7 @@ function displayArticles(articles) {
             articleImageFull(article, articleDiv);
         });
 
-        articleImage.addEventListener('mouseout', () => {
+        articleDiv.addEventListener('mouseout', () => {
             // articleImage.src = article.thumbnail_standard
             articleImageThumbnail(article, articleDiv);
         });
@@ -60,38 +61,49 @@ function articleImageThumbnail(article, articleDiv) {
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
 
-    let moreInfoButton = document.createElement('button');
-    moreInfoButton.textContent = 'Show More Info';
-    moreInfoButton.dataset.articleAbstract = article.abstract;
-    moreInfoButton.className = 'more-info-button';
+    // let moreInfoButton = document.createElement('button');
+    // moreInfoButton.textContent = 'Show More Info';
+    // moreInfoButton.dataset.articleAbstract = article.abstract;
+    // moreInfoButton.className = 'more-info-button';
     articleDiv.innerHTML = '';
 
     articleDiv.appendChild(articleImage);
     articleDiv.appendChild(articleTitle);
-    articleDiv.appendChild(moreInfoButton);
-    articleList.appendChild(articleDiv);
+    // articleDiv.appendChild(moreInfoButton);
 }
 
 function articleImageFull(article, articleDiv) {
     let articleImage = document.createElement('img');
+    let imageUrl = '';
+
+    for () {}
+
+    if multimedia[2].url{
+        imageUrl = multimedia[2].url
+    }
+    else if {
+        imageUrl = 
+    }
+
     articleImage.src = article.multimedia[2].url;
     articleImage.alt = article.title;
     articleImage.dataset.articleUrl = article.url;
     articleImage.className = 'article-image';
 
     let articleTitle = document.createElement('h3');
+    let articleAbstract = document.createElement('p');
     articleTitle.textContent = article.title;
+    articleAbstract.textContent = article.abstract;
 
-    let moreInfoButton = document.createElement('button');
-    moreInfoButton.textContent = 'Show More Info';
-    moreInfoButton.dataset.articleAbstract = article.abstract;
-    moreInfoButton.className = 'more-info-button';
+    // let moreInfoButton = document.createElement('button');
+    // moreInfoButton.textContent = 'Show More Info';
+    // moreInfoButton.dataset.articleAbstract = article.abstract;
+    // moreInfoButton.className = 'more-info-button';
     articleDiv.innerHTML = '';
 
     articleDiv.appendChild(articleImage);
     articleDiv.appendChild(articleTitle);
-    articleDiv.appendChild(moreInfoButton);
-    articleList.appendChild(articleDiv);
+    // articleDiv.appendChild(moreInfoButton);
 }
 
 // Initial fetch to load the first page of articles
