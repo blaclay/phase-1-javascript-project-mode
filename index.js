@@ -1,54 +1,80 @@
-const url = 'https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=StRnwuvLrlzl1qT0szS7CAKPI2NGEJ65'
+let apiKey = 'StRnwuvLrlzl1qT0szS7CAKPI2NGEJ65';
+const sectionUrl = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${apiKey}`;
 
-function displayMain() {
-    const mainbody = document.querySelector('#mainbody')
-    let p = document.createElement('p')
+// Event Listener: Click Event on Article Image
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('article-image')) {
+        let articleURL = event.target.dataset.articleUrl;
+        window.open(articleURL, '_blank');
+    }
+});
 
-    p.innerHTML = data[0].section
-    mainbody.append(p)
-}
-
-function newsFull() {
+// Function to fetch articles from the API
+function fetchArticles() {
+    //   let url = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${apiKey}&offset=${currentOffset}`;
     section = this.value
-    newsURL = 'https://api.nytimes.com/svc/news/v3/content/nyt/' + section + '.json?api-key=StRnwuvLrlzl1qT0szS7CAKPI2NGEJ65'
+    url = `https://api.nytimes.com/svc/news/v3/content/nyt/${section}.json?api-key=${apiKey}`;
 
-    fetch(newsURL)
-        .then(res => res.json())
+
+    fetch(url)
+        .then(response => response.json())
         .then(data => {
-            let output = ''
-            console.log(data)
-            data.results.forEach(item => {
-                if (item.multimedia) {
-                    if (item.multimedia[0]) {
-                        output += `<img src="${item.multimedia[0].url}">`
-                    }
-                }
-                output += `<option value="${item.title}">${item.title}</option>`
-                output += `<option value="${item.byline}">${item.byline}</option>`
-                output += `<option value="${item.published_date}">${item.published_date}</option>`
-                output += `<option value="${item.section}">${item.section}</option>`
-                output += `<option value="${item.abstract}">${item.abstract}</option>`
-                output += `<option value="${item.url}">${item.url}</option>`
-            })
-            document.querySelector('#mainbody').innerHTML = output
+            displayArticles(data.results);
         })
-
-        console.log("newsFull()")
+        .catch(error => {
+            console.log('Error:', error);
+        });
 }
 
+// Function to display the articles on the page
+function displayArticles(articles) {
+    let articleList = document.getElementById('article-list');
+    articleList.innerHTML = '';
 
+    articles.forEach(article => {
+        let articleDiv = document.createElement('div');
+        articleDiv.className = 'article';
 
-fetch(url)
+        let articleImage = document.createElement('img');
+        articleImage.src = article.thumbnail_standard;
+        articleImage.alt = article.title;
+        articleImage.dataset.articleUrl = article.url;
+        articleImage.className = 'article-image';
+
+        let articleTitle = document.createElement('h3');
+        articleTitle.textContent = article.title;
+
+        let moreInfoButton = document.createElement('button');
+        moreInfoButton.textContent = 'Show More Info';
+        moreInfoButton.dataset.articleAbstract = article.abstract;
+        moreInfoButton.className = 'more-info-button';
+
+        articleDiv.appendChild(articleImage);
+        articleDiv.appendChild(articleTitle);
+        articleDiv.appendChild(moreInfoButton);
+        articleList.appendChild(articleDiv);
+
+        articleDiv.addEventListener('mouseover', () => {
+            articleImage.src = article.multimedia[2].url
+        });
+
+        articleImage.addEventListener('mouseout', () => {
+            articleImage.src = article.thumbnail_standard
+        });
+    });
+}
+
+// Initial fetch to load the first page of articles
+fetch(sectionUrl)
     .then(res => res.json())
     .then(data => {
-        let output = ''
+        let article = ''
         console.log(data)
         data.results.forEach(item => {
-            output += `<option value="${item.section}">${item.display_name}</option>`
+            article += `<option value="${item.section}">${item.display_name}</option>`
         })
         const sectionSelect = document.querySelector('#sectionSelect')
-        sectionSelect.innerHTML = output
-        sectionSelect.addEventListener("change", newsFull, false)
-        console.log("fetch(url)")
+        sectionSelect.innerHTML = article
+        sectionSelect.addEventListener("change", fetchArticles, false)
+        console.log("fetch(sectionUrl)")
     })
-
