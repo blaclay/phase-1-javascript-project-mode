@@ -34,20 +34,37 @@ function displayArticles(articles) {
     articles.forEach(article => {
         let articleDiv = document.createElement('div');
         articleDiv.className = 'article';
+        let expandButton = document.createElement('button');
+        expandButton.innerText = 'Show More';
+        expandButton.state = 'Less';
 
+        articleList.appendChild(expandButton);
         articleImageThumbnail(article, articleDiv);
         articleList.appendChild(articleDiv);
 
-        articleDiv.addEventListener('mouseover', () => {
-            // articleImage.src = article.multimedia[2].url;
-            // articleImage.className = 'article-image';
-            articleImageFull(article, articleDiv);
+        expandButton.addEventListener('click', () => {
+            if (expandButton.state === 'More') {
+                expandButton.state = 'Less';
+                expandButton.innerText = 'Show More';
+                articleImageThumbnail(article, articleDiv);
+            }
+            else {
+                expandButton.state = 'More';
+                expandButton.innerText = 'Show Less';
+                articleImageFull(article, articleDiv);
+            }
         });
 
-        articleDiv.addEventListener('mouseout', () => {
-            // articleImage.src = article.thumbnail_standard
-            articleImageThumbnail(article, articleDiv);
-        });
+        // articleDiv.addEventListener('mouseover', () => {
+        //     // articleImage.src = article.multimedia[2].url;
+        //     // articleImage.className = 'article-image';
+        //     articleImageFull(article, articleDiv);
+        // });
+
+        // articleDiv.addEventListener('mouseout', () => {
+        //     // // articleImage.src = article.thumbnail_standard
+        //     articleImageThumbnail(article, articleDiv);
+        // });
     });
 }
 
