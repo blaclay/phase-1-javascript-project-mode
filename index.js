@@ -75,17 +75,18 @@ function articleImageThumbnail(article, articleDiv) {
 function articleImageFull(article, articleDiv) {
     let articleImage = document.createElement('img');
     let imageUrl = '';
+    let imageSize = 0;
 
-    for () {}
-
-    if multimedia[2].url{
-        imageUrl = multimedia[2].url
+    article.multimedia.forEach(media => {
+        if (media.width > imageSize) {
+            imageUrl = media.url
+            imageSize = media.width
+        }
     }
-    else if {
-        imageUrl = 
-    }
+    );
 
-    articleImage.src = article.multimedia[2].url;
+    // articleImage.src = article.multimedia[2].url;
+    articleImage.src = imageUrl
     articleImage.alt = article.title;
     articleImage.dataset.articleUrl = article.url;
     articleImage.className = 'article-image';
@@ -101,7 +102,10 @@ function articleImageFull(article, articleDiv) {
     // moreInfoButton.className = 'more-info-button';
     articleDiv.innerHTML = '';
 
-    articleDiv.appendChild(articleImage);
+    if (imageSize != 0) {
+        articleDiv.appendChild(articleImage);
+    }
+
     articleDiv.appendChild(articleTitle);
     // articleDiv.appendChild(moreInfoButton);
 }
