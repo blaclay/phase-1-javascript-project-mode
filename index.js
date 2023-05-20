@@ -20,6 +20,7 @@ function fetchArticles() {
         .then(response => response.json())
         .then(data => {
             displayArticles(data.results);
+            console.log(data);
         })
         .catch(error => {
             console.log('Error:', error);
@@ -38,9 +39,9 @@ function displayArticles(articles) {
         expandButton.innerText = 'Show More';
         expandButton.state = 'Less';
 
-        articleList.appendChild(expandButton);
         articleImageThumbnail(article, articleDiv);
         articleList.appendChild(articleDiv);
+        articleDiv.appendChild(expandButton);
 
         expandButton.addEventListener('click', () => {
             if (expandButton.state === 'More') {
@@ -53,7 +54,10 @@ function displayArticles(articles) {
                 expandButton.innerText = 'Show Less';
                 articleImageFull(article, articleDiv);
             }
+            articleDiv.appendChild(expandButton);
         });
+
+
 
         // articleDiv.addEventListener('mouseover', () => {
         //     // articleImage.src = article.multimedia[2].url;
@@ -93,14 +97,19 @@ function articleImageFull(article, articleDiv) {
     let articleImage = document.createElement('img');
     let imageUrl = '';
     let imageSize = 0;
+    let articleInfoDiv = document.createElement('div');
 
-    article.multimedia.forEach(media => {
-        if (media.width > imageSize) {
-            imageUrl = media.url
-            imageSize = media.width
-        }
+    if (article.multimedia) {
+        article.multimedia.forEach(media => {
+            if (media.width > imageSize) {
+                imageUrl = media.url
+                imageSize = media.width
+            }
+        });
     }
-    );
+    else {
+        imageUrl = "images/No-Image-Placeholder.svg.png";
+    }
 
     // articleImage.src = article.multimedia[2].url;
     articleImage.src = imageUrl
@@ -112,6 +121,8 @@ function articleImageFull(article, articleDiv) {
     let articleAbstract = document.createElement('p');
     articleTitle.textContent = article.title;
     articleAbstract.textContent = article.abstract;
+    // let articleInfoList = document.createElement('ul')
+    // articleInfoList.className = 'article-info';
 
     // let moreInfoButton = document.createElement('button');
     // moreInfoButton.textContent = 'Show More Info';
@@ -123,8 +134,16 @@ function articleImageFull(article, articleDiv) {
         articleDiv.appendChild(articleImage);
     }
 
-    articleDiv.appendChild(articleTitle);
-    // articleDiv.appendChild(moreInfoButton);
+    articleDiv.appendChild(articleInfoDiv)
+    articleInfoDiv.appendChild(articleTitle);
+    articleInfoDiv.appendChild(document.createElement('br'));
+    articleInfoDiv.appendChild(articleAbstract);
+
+    // output += `<option value="${item.byline}">${item.byline}</option>`
+    // output += `<option value="${item.published_date}">${item.published_date}</option>`
+    // output += `<option value="${item.section}">${item.section}</option>`
+    // output += `<option value="${item.abstract}">${item.abstract}</option>`
+    // output += `<option value="${item.url}">${item.url}</option>`
 }
 
 // Initial fetch to load the first page of articles
