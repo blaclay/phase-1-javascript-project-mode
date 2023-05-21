@@ -66,7 +66,7 @@ function displayArticles(articles) {
         articleDiv.addEventListener('mouseout', () => {
             articleDiv.classList.remove = 'article-hover';
         });
-        
+
         // articleDiv.addEventListener('mouseover', () => {
         //     // articleImage.src = article.multimedia[2].url;
         //     // articleImage.className = 'article-image';
@@ -82,22 +82,16 @@ function displayArticles(articles) {
 
 function articleImageThumbnail(article, articleDiv) {
     let articleImage = document.createElement('img');
-    articleImage.src = article.thumbnail_standard;
-    articleImage.alt = article.title;
-    articleImage.dataset.articleUrl = article.url;
-    articleImage.className = 'article-thumbnail';
 
-    // if (article.multimedia) {
-    //     article.multimedia.forEach(media => {
-    //         if (media.width > imageSize) {
-    //             imageUrl = media.url
-    //             imageSize = media.width
-    //         }
-    //     });
-    // }
-    // else {
-    //     imageUrl = "images/No-Image-Placeholder.svg.png";
-    // }
+    if (article.thumbnail_standard === 'undefined') {
+        articleImage.src = "No-Image-Placeholder.svg.png";
+    }
+    else {
+        articleImage.src = article.thumbnail_standard;
+        articleImage.alt = article.title;
+        articleImage.dataset.articleUrl = article.url;
+        articleImage.className = 'article-thumbnail';
+    }
 
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
@@ -141,19 +135,19 @@ function articleImageFull(article, articleDiv) {
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
 
-    let articleInfoList = document.createElement('ul');
-    articleInfoList.className = 'article-info';
-    
-    let articleDate = document.createElement('option');
+    // let articleInfoList = document.createElement('ul');
+    // articleInfoList.className = 'article-info';
+
+    let articleDate = document.createElement('p');
     articleDate.innerHTML = article.published_date;
 
-    let articleByline = document.createElement('option');
+    let articleByline = document.createElement('p');
     articleByline.innerHTML = article.byline;
 
-    let articleAbstract = document.createElement('option');
+    let articleAbstract = document.createElement('p');
     articleAbstract.innerHTML = article.abstract;
 
-    let articleUrl = document.createElement('option');
+    let articleUrl = document.createElement('p');
     articleUrl.innerHTML = article.url;
 
 
@@ -173,14 +167,14 @@ function articleImageFull(article, articleDiv) {
 
     articleDiv.appendChild(articleInfoDiv);
     articleInfoDiv.appendChild(articleTitle);
-    articleInfoDiv.appendChild(document.createElement('br'));
-    articleInfoDiv.appendChild(articleInfoList);
-    articleInfoList.appendChild(articleDate);
-    articleInfoList.appendChild(articleByline);
-    articleInfoList.appendChild(articleAbstract);
-    articleInfoList.appendChild(articleUrl);
+    // articleInfoDiv.appendChild(document.createElement('br'));
+    // articleInfoDiv.appendChild(articleInfoList);
+    articleInfoDiv.appendChild(articleDate);
+    articleInfoDiv.appendChild(articleByline);
+    articleInfoDiv.appendChild(articleAbstract);
+    articleInfoDiv.appendChild(articleUrl);
 
-    
+
 }
 
 // Initial fetch to load the first page of articles
@@ -190,7 +184,17 @@ fetch(sectionUrl)
         let article = ''
         console.log(data)
         data.results.forEach(item => {
-            article += `<option value="${item.section}">${item.display_name}</option>`
+            // article += `<option value="${item.section}">${item.display_name}</option>`
+
+            let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections']
+            let nextSection = `<option value="${item.section}">${item.display_name}</option>`
+            noShowList.forEach(nono => {
+                if (item.section === nono) {
+                    nextSection = ''
+                }
+            })
+
+            article += nextSection
         })
         const sectionSelect = document.querySelector('#sectionSelect')
         sectionSelect.innerHTML = article
