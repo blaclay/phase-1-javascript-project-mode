@@ -6,8 +6,12 @@
 
 .article {
 	display: flex;
-	/* margin-bottom: 20px; */
+	width: 900px;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
 }
+
 
 .article-image {
 	object-fit: cover;
