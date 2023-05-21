@@ -1,7 +1,8 @@
+// API key and website URL
 let apiKey = 'StRnwuvLrlzl1qT0szS7CAKPI2NGEJ65';
 const sectionUrl = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${apiKey}`;
 
-// Event Listener: Click Event on Article Image
+// Click Event on Article Image
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('article-image')) {
         let articleURL = event.target.dataset.articleUrl;
@@ -11,7 +12,6 @@ document.addEventListener('click', function (event) {
 
 // Function to fetch articles from the API
 function fetchArticles() {
-    //   let url = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${apiKey}&offset=${currentOffset}`;
     section = this.value
     url = `https://api.nytimes.com/svc/news/v3/content/nyt/${section}.json?api-key=${apiKey}`;
 
@@ -58,7 +58,6 @@ function displayArticles(articles) {
             articleDiv.appendChild(expandButton);
         });
 
-        /// PUT THESE BACK IN ONCE FIXED:
         articleDiv.addEventListener('mouseover', () => {
             articleDiv.classList.add('article-hover');
         });
@@ -69,6 +68,7 @@ function displayArticles(articles) {
     });
 }
 
+// Function to display normal article block
 function articleImageThumbnail(article, articleDiv) {
     let articleImage = document.createElement('img');
 
@@ -91,6 +91,7 @@ function articleImageThumbnail(article, articleDiv) {
     articleDiv.appendChild(articleTitle);
 }
 
+// Function to show expanded article block
 function articleImageFull(article, articleDiv) {
     let articleImage = document.createElement('img');
     let imageUrl = '';
@@ -110,7 +111,6 @@ function articleImageFull(article, articleDiv) {
         imageUrl = "No-Image-Placeholder.svg.png";
     }
 
-    // articleImage.src = article.multimedia[2].url;
     articleImage.src = imageUrl;
     articleImage.alt = article.title;
     articleImage.dataset.articleUrl = article.url;
@@ -119,13 +119,9 @@ function articleImageFull(article, articleDiv) {
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
 
-    // let articleInfoList = document.createElement('ul');
-    // articleInfoList.className = 'article-info';
-
     let articleDate = document.createElement('p');
     let pubDate = new Date(Date.parse(article.published_date));
     articleDate.innerHTML = pubDate.toDateString();
-    // articleDate.innerHTML = article.published_date;
 
     let articleByline = document.createElement('p');
     articleByline.innerHTML = article.byline;
@@ -137,15 +133,6 @@ function articleImageFull(article, articleDiv) {
     articleUrl.innerHTML = article.url;
     articleUrl.href = article.url;
 
-
-    // articleInfoList += `<option value="${item.byline}">${item.byline}</option>`
-    // articleInfoList += `<option value="${item.published_date}">${item.published_date}</option>`
-    // articleInfoList += `<option value="${item.url}">${item.url}</option>`
-
-    // let moreInfoButton = document.createElement('button');
-    // moreInfoButton.textContent = 'Show More Info';
-    // moreInfoButton.dataset.articleAbstract = article.abstract;
-    // moreInfoButton.className = 'more-info-button';
     articleDiv.innerHTML = '';
 
     if (imageSize != 0) {
@@ -154,8 +141,6 @@ function articleImageFull(article, articleDiv) {
 
     articleDiv.appendChild(articleInfoDiv);
     articleInfoDiv.appendChild(articleTitle);
-    // articleInfoDiv.appendChild(document.createElement('br'));
-    // articleInfoDiv.appendChild(articleInfoList);
     articleInfoDiv.appendChild(articleDate);
     articleInfoDiv.appendChild(articleByline);
     articleInfoDiv.appendChild(articleAbstract);
@@ -164,15 +149,13 @@ function articleImageFull(article, articleDiv) {
 
 }
 
-// Initial fetch to load the first page of articles
+// Initial fetch to load articles
 fetch(sectionUrl)
     .then(res => res.json())
     .then(data => {
         let article = ''
         console.log(data)
         data.results.forEach(item => {
-            // article += `<option value="${item.section}">${item.display_name}</option>`
-
             let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections', 'universal', 'the weekly']
             let nextSection = `<option value="${item.section}">${item.display_name}</option>`
             noShowList.forEach(nono => {
