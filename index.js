@@ -79,6 +79,18 @@ function articleImageThumbnail(article, articleDiv) {
     articleImage.dataset.articleUrl = article.url;
     articleImage.className = 'article-thumbnail';
 
+    // if (article.multimedia) {
+    //     article.multimedia.forEach(media => {
+    //         if (media.width > imageSize) {
+    //             imageUrl = media.url
+    //             imageSize = media.width
+    //         }
+    //     });
+    // }
+    // else {
+    //     imageUrl = "images/No-Image-Placeholder.svg.png";
+    // }
+
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
 
