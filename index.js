@@ -60,11 +60,11 @@ function displayArticles(articles) {
 
         /// PUT THESE BACK IN ONCE FIXED:
         articleDiv.addEventListener('mouseover', () => {
-            articleDiv.classList.add = 'article-hover';
+            articleDiv.classList.add('article-hover');
         });
 
         articleDiv.addEventListener('mouseout', () => {
-            articleDiv.classList.remove = 'article-hover';
+            articleDiv.classList.remove('article-hover');
         });
 
         // articleDiv.addEventListener('mouseover', () => {
@@ -83,7 +83,7 @@ function displayArticles(articles) {
 function articleImageThumbnail(article, articleDiv) {
     let articleImage = document.createElement('img');
 
-    if (article.thumbnail_standard === 'undefined') {
+    if (!article.thumbnail_standard) {
         articleImage.src = "No-Image-Placeholder.svg.png";
     }
     else {
