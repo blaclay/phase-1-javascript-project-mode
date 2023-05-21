@@ -59,13 +59,13 @@ function displayArticles(articles) {
         });
 
         /// PUT THESE BACK IN ONCE FIXED:
-        // articleDiv.addEventListener('mouseover', () => {
-        //     articleDiv.className = 'article-hoveron';
-        // });
+        articleDiv.addEventListener('mouseover', () => {
+            articleDiv.classList.add = 'article-hover';
+        });
 
-        // articleDiv.addEventListener('mouseout', () => {
-        //     articleDiv.className = 'article-hoveroff';
-        // });
+        articleDiv.addEventListener('mouseout', () => {
+            articleDiv.classList.remove = 'article-hover';
+        });
         
         // articleDiv.addEventListener('mouseover', () => {
         //     // articleImage.src = article.multimedia[2].url;
@@ -128,22 +128,38 @@ function articleImageFull(article, articleDiv) {
             }
         });
     }
-    else {
-        imageUrl = "images/No-Image-Placeholder.svg.png";
+    if (imageUrl === 'undefined') {
+        imageUrl = "No-Image-Placeholder.svg.png";
     }
 
     // articleImage.src = article.multimedia[2].url;
-    articleImage.src = imageUrl
+    articleImage.src = imageUrl;
     articleImage.alt = article.title;
     articleImage.dataset.articleUrl = article.url;
     articleImage.className = 'article-image';
 
     let articleTitle = document.createElement('h3');
-    let articleAbstract = document.createElement('p');
     articleTitle.textContent = article.title;
-    articleAbstract.textContent = article.abstract;
-    // let articleInfoList = document.createElement('ul')
-    // articleInfoList.className = 'article-info';
+
+    let articleInfoList = document.createElement('ul');
+    articleInfoList.className = 'article-info';
+    
+    let articleDate = document.createElement('option');
+    articleDate.innerHTML = article.published_date;
+
+    let articleByline = document.createElement('option');
+    articleByline.innerHTML = article.byline;
+
+    let articleAbstract = document.createElement('option');
+    articleAbstract.innerHTML = article.abstract;
+
+    let articleUrl = document.createElement('option');
+    articleUrl.innerHTML = article.url;
+
+
+    // articleInfoList += `<option value="${item.byline}">${item.byline}</option>`
+    // articleInfoList += `<option value="${item.published_date}">${item.published_date}</option>`
+    // articleInfoList += `<option value="${item.url}">${item.url}</option>`
 
     // let moreInfoButton = document.createElement('button');
     // moreInfoButton.textContent = 'Show More Info';
@@ -155,16 +171,16 @@ function articleImageFull(article, articleDiv) {
         articleDiv.appendChild(articleImage);
     }
 
-    articleDiv.appendChild(articleInfoDiv)
+    articleDiv.appendChild(articleInfoDiv);
     articleInfoDiv.appendChild(articleTitle);
     articleInfoDiv.appendChild(document.createElement('br'));
-    articleInfoDiv.appendChild(articleAbstract);
+    articleInfoDiv.appendChild(articleInfoList);
+    articleInfoList.appendChild(articleDate);
+    articleInfoList.appendChild(articleByline);
+    articleInfoList.appendChild(articleAbstract);
+    articleInfoList.appendChild(articleUrl);
 
-    // output += `<option value="${item.byline}">${item.byline}</option>`
-    // output += `<option value="${item.published_date}">${item.published_date}</option>`
-    // output += `<option value="${item.section}">${item.section}</option>`
-    // output += `<option value="${item.abstract}">${item.abstract}</option>`
-    // output += `<option value="${item.url}">${item.url}</option>`
+    
 }
 
 // Initial fetch to load the first page of articles

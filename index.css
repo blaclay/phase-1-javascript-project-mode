@@ -1,19 +1,25 @@
 .headliner {
 	background: #dadada;
-	font-family: Bahnschrift SemiBold;
-	padding: 20px;
+	font-family: Georgia;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-bottom: 10px;
 	border-bottom: 1px solid #e5e5e5;
+	margin: auto;
 }
 
 .article-list {
 	margin: auto;
 	width: 1200px;
+	font-family: Bahnschrift;
+	border-bottom: 10px;
 }
 
 .article {
 	display: flex;
-	width: 1200px;
+	width: 1000px;
 	margin-top: 20px;
+	border-bottom: 10px;
 }
 
 .article-image {
@@ -27,9 +33,14 @@
 	height: 100px;
 	object-fit: cover;
 	cursor: pointer;
+	margin-right: 30px;
 }
 
-.article-hoveron {
+.article-expanded {
+
+}
+
+.article-hover {
 	background-color: aliceblue;
 }
 
