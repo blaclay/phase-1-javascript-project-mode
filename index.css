@@ -6,11 +6,12 @@
 	padding-bottom: 10px;
 	border-bottom: 1px solid #e5e5e5;
 	margin: auto;
+	width: 1000px
 }
 
 .article-list {
 	margin: auto;
-	width: 1200px;
+	width: 1000px;
 	font-family: Bahnschrift;
 	border-bottom: 10px;
 }
@@ -34,10 +35,6 @@
 	object-fit: cover;
 	cursor: pointer;
 	margin-right: 30px;
-}
-
-.article-expanded {
-
 }
 
 .article-hover {

@@ -139,7 +139,9 @@ function articleImageFull(article, articleDiv) {
     // articleInfoList.className = 'article-info';
 
     let articleDate = document.createElement('p');
-    articleDate.innerHTML = article.published_date;
+    let pubDate = new Date(Date.parse(article.published_date));
+    articleDate.innerHTML = pubDate.toDateString();
+    // articleDate.innerHTML = article.published_date;
 
     let articleByline = document.createElement('p');
     articleByline.innerHTML = article.byline;
@@ -147,8 +149,9 @@ function articleImageFull(article, articleDiv) {
     let articleAbstract = document.createElement('p');
     articleAbstract.innerHTML = article.abstract;
 
-    let articleUrl = document.createElement('p');
+    let articleUrl = document.createElement('a');
     articleUrl.innerHTML = article.url;
+    articleUrl.href = article.url;
 
 
     // articleInfoList += `<option value="${item.byline}">${item.byline}</option>`
