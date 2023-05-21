@@ -38,6 +38,7 @@ function displayArticles(articles) {
         let expandButton = document.createElement('button');
         expandButton.innerText = 'Show More';
         expandButton.state = 'Less';
+        expandButton.className = 'expand-button';
 
         articleImageThumbnail(article, articleDiv);
         articleList.appendChild(articleDiv);
@@ -57,8 +58,15 @@ function displayArticles(articles) {
             articleDiv.appendChild(expandButton);
         });
 
+        /// PUT THESE BACK IN ONCE FIXED:
+        // articleDiv.addEventListener('mouseover', () => {
+        //     articleDiv.className = 'article-hoveron';
+        // });
 
-
+        // articleDiv.addEventListener('mouseout', () => {
+        //     articleDiv.className = 'article-hoveroff';
+        // });
+        
         // articleDiv.addEventListener('mouseover', () => {
         //     // articleImage.src = article.multimedia[2].url;
         //     // articleImage.className = 'article-image';
@@ -110,6 +118,7 @@ function articleImageFull(article, articleDiv) {
     let imageUrl = '';
     let imageSize = 0;
     let articleInfoDiv = document.createElement('div');
+    articleInfoDiv.className = 'article-info-section';
 
     if (article.multimedia) {
         article.multimedia.forEach(media => {

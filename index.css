@@ -1,17 +1,20 @@
 .headliner {
 	background: #dadada;
+	font-family: Bahnschrift SemiBold;
 	padding: 20px;
-    border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.article-list {
+	margin: auto;
+	width: 1200px;
 }
 
 .article {
 	display: flex;
-	width: 900px;
+	width: 1200px;
 	margin-top: 20px;
-	margin-right: auto;
-	margin-left: auto;
 }
-
 
 .article-image {
 	object-fit: cover;
@@ -23,6 +26,18 @@
 	width: 100px;
 	height: 100px;
 	object-fit: cover;
-	margin-right: 10px;
 	cursor: pointer;
+}
+
+.article-hoveron {
+	background-color: aliceblue;
+}
+
+.expand-button {
+	width: 50px;
+	float: right;
+	margin-left: auto;
+	font-family: Bahnschrift;
+	background-color: lightgray;
+	border: none;
 }
