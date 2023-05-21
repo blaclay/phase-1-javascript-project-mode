@@ -189,7 +189,7 @@ fetch(sectionUrl)
         data.results.forEach(item => {
             // article += `<option value="${item.section}">${item.display_name}</option>`
 
-            let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections']
+            let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections', 'universal']
             let nextSection = `<option value="${item.section}">${item.display_name}</option>`
             noShowList.forEach(nono => {
                 if (item.section === nono) {
