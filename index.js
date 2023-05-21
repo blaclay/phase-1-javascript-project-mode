@@ -66,17 +66,6 @@ function displayArticles(articles) {
         articleDiv.addEventListener('mouseout', () => {
             articleDiv.classList.remove('article-hover');
         });
-
-        // articleDiv.addEventListener('mouseover', () => {
-        //     // articleImage.src = article.multimedia[2].url;
-        //     // articleImage.className = 'article-image';
-        //     articleImageFull(article, articleDiv);
-        // });
-
-        // articleDiv.addEventListener('mouseout', () => {
-        //     // // articleImage.src = article.thumbnail_standard
-        //     articleImageThumbnail(article, articleDiv);
-        // });
     });
 }
 
@@ -84,7 +73,7 @@ function articleImageThumbnail(article, articleDiv) {
     let articleImage = document.createElement('img');
 
     if (!article.thumbnail_standard) {
-        articleImage.src = "No-Image-Placeholder.100x100.png";
+        articleImage.src = "No-Image-Placeholder-100x100.png";
     }
     else {
         articleImage.src = article.thumbnail_standard;
@@ -96,15 +85,10 @@ function articleImageThumbnail(article, articleDiv) {
     let articleTitle = document.createElement('h3');
     articleTitle.textContent = article.title;
 
-    // let moreInfoButton = document.createElement('button');
-    // moreInfoButton.textContent = 'Show More Info';
-    // moreInfoButton.dataset.articleAbstract = article.abstract;
-    // moreInfoButton.className = 'more-info-button';
     articleDiv.innerHTML = '';
 
     articleDiv.appendChild(articleImage);
     articleDiv.appendChild(articleTitle);
-    // articleDiv.appendChild(moreInfoButton);
 }
 
 function articleImageFull(article, articleDiv) {
