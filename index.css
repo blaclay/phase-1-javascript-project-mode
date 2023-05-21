@@ -1,5 +1,9 @@
+.endomorphic {
+	background-color: firebrick;
+}
+
 .headliner {
-	background: #dadada;
+	background: firebrick;
 	font-family: Georgia;
 	padding-top: 10px;
 	padding-left: 20px;
@@ -46,10 +50,12 @@
 	float: right;
 	margin-left: auto;
 	font-family: Bahnschrift;
-	background-color: lightgray;
+	background-color: darkred;
 	border: none;
 }
 
 .little-feets {
-	m
+	background: #dadada;
+	margin: auto;
+	font-family: Bahnschrift;
 }
