@@ -4,26 +4,29 @@
 
 .headliner {
 	background: firebrick;
+	color: white;
 	font-family: Georgia;
 	padding-top: 10px;
 	padding-left: 20px;
 	padding-bottom: 10px;
-	border-bottom: 1px solid #e5e5e5;
 	margin: auto;
-	width: 1000px
+	width: 1000px;
+	border: 2px solid #e5e5e5;
 }
 
 .article-list {
+	background: #e5e5e5;
+	border: 12px solid #e5e5e5;
 	margin: auto;
 	width: 1000px;
 	font-family: Bahnschrift;
-	border-bottom: 10px;
 }
 
 .article {
+	background: white;
 	display: flex;
 	width: 1000px;
-	margin-top: 20px;
+	margin-top: 3px;
 	border-bottom: 10px;
 }
 
@@ -52,10 +55,16 @@
 	font-family: Bahnschrift;
 	background-color: darkred;
 	border: none;
+	color: white;
 }
 
 .little-feets {
-	background: #dadada;
+	background: white;
+	color: firebrick;
+	padding-top: 60px;
+	padding-bottom: 40px;
+	padding-left: 24px;
 	margin: auto;
+	width: 1000px;
 	font-family: Bahnschrift;
 }
