@@ -84,7 +84,7 @@ function articleImageThumbnail(article, articleDiv) {
     let articleImage = document.createElement('img');
 
     if (!article.thumbnail_standard) {
-        articleImage.src = "No-Image-Placeholder.svg.png";
+        articleImage.src = "No-Image-Placeholder.100x100.png";
     }
     else {
         articleImage.src = article.thumbnail_standard;
@@ -189,7 +189,7 @@ fetch(sectionUrl)
         data.results.forEach(item => {
             // article += `<option value="${item.section}">${item.display_name}</option>`
 
-            let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections', 'universal']
+            let noShowList = ['crosswords & games', 'admin', 'automobiles', 'corrections', 'universal', 'the weekly']
             let nextSection = `<option value="${item.section}">${item.display_name}</option>`
             noShowList.forEach(nono => {
                 if (item.section === nono) {
